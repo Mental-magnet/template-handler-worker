@@ -1,0 +1,73 @@
+{
+  "name": "templatehandler-worker",
+  "version": "0.0.1",
+  "description": "A microservice for custom template handling.",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build && npm run sentry:sourcemaps",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org mental-magnet --project templatehandler-worker ./dist && sentry-cli sourcemaps upload --org mental-magnet --project templatehandler-worker ./dist"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.0.0",
+    "@fastify/static": "^8.1.1",
+    "@nestjs/common": "latest",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "latest",
+    "@nestjs/microservices": "^11.1.0",
+    "@nestjs/mongoose": "^11.0.2",
+    "@nestjs/platform-fastify": "latest",
+    "@nestjs/swagger": "latest",
+    "@nestjs/testing": "^11.1.0",
+    "@sentry/cli": "^2.43.1",
+    "@sentry/nestjs": "^9.15.0",
+    "@sentry/profiling-node": "^9.15.0",
+    "bson": "^6.10.3",
+    "class-transformer": "latest",
+    "class-validator": "latest",
+    "fastify": "latest",
+    "kafkajs": "^2.2.4",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.0",
+    "reflect-metadata": "latest"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "latest",
+    "@types/jest": "^29.5.14",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "prettier": "latest",
+    "typescript": "latest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

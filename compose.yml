@@ -1,0 +1,23 @@
+services:
+  templateHandler:
+    # the idea is create an image called template-handler:version -> template-handler:0.0.1
+    # and have the build context around so we can build and use "latest"
+    # this way we can have a versioned image and a latest image at the same time
+    # we can rollback to a versioned image if needed
+    # and we can use the latest image for development and testing
+    # also we dont have to change the image name in the docker-compose file
+    image: template-handler:latest
+    
+    env_file:
+      - setup.env
+
+    build:
+
+      context: .
+      dockerfile: Dockerfile
+
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    
